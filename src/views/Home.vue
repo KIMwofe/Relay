@@ -1,9 +1,7 @@
 <template>
   <div class="home" ref="capture">
-    <audio src="@/assets/muzic.mp3"
-          autoplay="autoplay"
-           loop
-           ref="MusicPlay"></audio>
+    <img src="@/images/audio.png" alt class="audio" @click="play" />
+    <audio src="@/assets/muzic.mp3" autoplay="autoplay" loop ref="MusicPlay" preload></audio>
     <div class="home-index">
       <div class="home-index" v-show="show.first">
         <img src="@/images/title.png" alt />
@@ -70,9 +68,10 @@ export default {
   },
   components: {},
   mounted() {
-    console.log(this.$refs.MusicPlay)
-    this.$refs.MusicPlay.play()
-},
+    this.$nextTick(() => {
+        this.play()
+      });
+  },
   methods: {
     save() {
       html2canvas(this.$refs.capture, {
@@ -87,21 +86,21 @@ export default {
         this.show.first = false;
         this.show.second = true;
       } else if (this.show.second) {
-        this.name.length > 6 ? this.name = this.name.slice(0,5) + '...' : ''
+        this.name.length > 6 ? (this.name = this.name.slice(0, 5) + "...") : "";
         this.show.second = false;
         this.show.third = true;
         setTimeout(() => {
           this.save();
         }, 500);
       }
+    },
+    play() {
+      this.$refs.MusicPlay.play();
     }
   },
   watch: {
     // "$store.state.uid"(newV) {
     //   if (newV);
-    // }
-    // name(val) {
-    //   val.length > 8 ? this.name = val.slice(0,5) + '...' : ''
     // }
   }
 };
@@ -114,6 +113,14 @@ export default {
   background: url(~@/images/homeBg.png) no-repeat;
   background-size: 100% 100%;
   position: relative;
+  .audio {
+    width: 2.3125rem;
+    height: 2.3125rem;
+    position: absolute;
+    top: 0.78125rem;
+    right: 0.9375rem;
+    animation: run 2s infinite;
+  }
   .home-index {
     width: 100%;
     height: 100%;
@@ -262,7 +269,7 @@ export default {
       .ercode {
         position: relative;
         margin-left: 1.875rem;
-        margin-top:3.75rem;
+        margin-top: 3.75rem;
         z-index: 5;
         img {
           width: 5.75rem;
@@ -307,6 +314,17 @@ export default {
   :-ms-input-placeholder {
     /* Internet Explorer 10+ */
     color: #ffffff;
+  }
+  @keyframes run {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
 </style>
