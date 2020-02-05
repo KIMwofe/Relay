@@ -15,25 +15,7 @@ const routes = [
     name: "home",
     component: Home,
     meta: {
-      title: "鼠年行大运，奖品抽不停"
-    }
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: () =>
-      import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
-    meta: {
-      title: "我的抽奖"
-    }
-  },
-  {
-    path: "/detail",
-    name: "detail",
-    component: () =>
-      import(/* webpackChunkName: "detail" */ "../views/Detail.vue"),
-    meta: {
-      title: "抽奖详情"
+      title: "老年大学助力武汉"
     }
   },
   {
@@ -43,15 +25,6 @@ const routes = [
       import(/* webpackChunkName: "share" */ "../views/Share.vue"),
     meta: {
       title: "生成分享图"
-    }
-  },
-  {
-    path: "/flaunt/:goodsId",
-    name: "flaunt",
-    component: () =>
-      import(/* webpackChunkName: "flaunt" */ "../views/Flaunt.vue"),
-    meta: {
-      title: "炫耀一下"
     }
   },
   {
