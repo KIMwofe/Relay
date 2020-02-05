@@ -19,12 +19,12 @@ const routes = [
     }
   },
   {
-    path: "/share/:goodsId",
-    name: "share",
+    path: "/canvans",
+    name: "canvans",
     component: () =>
-      import(/* webpackChunkName: "share" */ "../views/Share.vue"),
+      import(/* webpackChunkName: "share" */ "../views/Canvans.vue"),
     meta: {
-      title: "生成分享图"
+      title: "老年大学助力武汉"
     }
   },
   {
