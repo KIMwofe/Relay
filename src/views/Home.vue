@@ -1,13 +1,13 @@
 <template>
   <div class="home" ref="capture">
     <img src="@/images/audio.png" alt class="audio" @click="play" />
-    <audio src="@/assets/muzic.mp3" autoplay="autoplay" loop ref="MusicPlay" preload></audio>
+    <audio src="@/assets/muzic.mp3" autoplay="autoplay" loop ref="MusicPlay" preload="auto"></audio>
     <div class="home-index">
       <div class="home-index" v-show="show.first">
         <img src="@/images/title.png" alt />
         <h1>你是老年大学学员中的</h1>
         <h2>
-          <span>8591</span>
+          <span>{{number}}</span>
           <i>位承诺者</i>
         </h2>
       </div>
@@ -18,16 +18,18 @@
       </div>
       <div v-show="show.third" class="home-third">
         <div class="third-top">
-          <div class="img"></div>
+		  <img :src="userImg" alt class="img" />
           <div class="content">
             <p>
               <span>我是第</span>
-              <span>8591</span>
+              <span>{{number}}</span>
             </p>
             <p>
               <span>老年大学的学员</span>
-              <span>{{name}}</span>
             </p>
+			<p>
+			  <span>{{name}}</span>	
+			</p>
           </div>
         </div>
         <img src="@/images/content.png" alt class="third-img" />
@@ -39,6 +41,10 @@
               <br />扫码参与接力
             </p>
           </div>
+		  <div class="footer">
+		  	<div>老年大学 助力武汉</div>
+			<div>众志成城 共度难关</div>
+		  </div>
         </div>
       </div>
       <div class="home-bottom" v-show="show.first || show.second"></div>
@@ -49,13 +55,14 @@
 </template>
 
 <script>
-// import api from "@/api/LotteryApi.js";
+import api from "@/api/HomeApi.js";
 import html2canvas from "html2canvas";
 
 export default {
   name: "home",
   data() {
     return {
+	  audioFlag: false,
       imageUrl: "",
       show: {
         first: true,
@@ -63,16 +70,34 @@ export default {
         third: false
       },
       name: "",
-      username: ""
+	  number: 0,
+	  userImg: '',
     };
   },
   components: {},
   mounted() {
-    this.$nextTick(() => {
-        this.play()
-      });
+	  this.getSupport();
+	  this.getUserInfo();
+	  // audio.
+	//   let that = this;
+	// this.$nextTick(() => {
+	// 	that.play();
+	// });
+	// this.play();
   },
   methods: {
+	getSupport(){
+	  api.getSupport().then(res=>{
+		  this.number = res
+		  console.log(res)
+	  })
+	},
+	getUserInfo(){
+	  api.getuUserinfo().then(res=>{
+		  this.userImg = res.avatar
+		  console.log(res.avatar)
+	  })
+	},
     save() {
       html2canvas(this.$refs.capture, {
         backgroundColor: null
@@ -95,7 +120,16 @@ export default {
       }
     },
     play() {
-      this.$refs.MusicPlay.play();
+		let that = this;
+		if(that.audioFlag){
+			that.$refs.MusicPlay.play();
+			that.audioFlag = false;
+			console.log("播放")
+		}else{
+			this.$refs.MusicPlay.pause();
+			that.audioFlag = true;
+			console.log("暂停")
+		}
     }
   },
   watch: {
@@ -120,6 +154,7 @@ export default {
     top: 0.78125rem;
     right: 0.9375rem;
     animation: run 2s infinite;
+	z-index: 100;
   }
   .home-index {
     width: 100%;
@@ -127,6 +162,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+	z-index: 99;
     img:nth-child(1) {
       width: 15.375rem;
       height: 12.25rem;
@@ -172,6 +208,7 @@ export default {
       height: 4.0625rem;
       position: absolute;
       bottom: 2.3125rem;
+	  z-index: 99;
     }
     .home-second {
       width: 100%;
@@ -218,41 +255,48 @@ export default {
   }
   .home-third {
     width: 100%;
-    padding: 3.6875rem 0 0 2.125rem;
+    padding: 3.4375rem 0 0 2.125rem;
     box-sizing: border-box;
     .third-top {
       display: flex;
       align-items: center;
       .img {
-        width: 3.6875rem;
-        height: 3.6875rem;
+        width: 4.6875rem;
+        height: 4.6875rem;
         border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 1);
+		margin-top: 0;
       }
       .content {
         margin-left: 0.9375rem;
         p {
-          font-size: 1.1875rem;
+          font-size: 1.125rem;
           font-weight: 400;
           color: rgba(255, 255, 255, 1);
           display: flex;
           align-items: flex-end;
           margin: 0;
           span:nth-child(2) {
-            font-size: 1.25rem;
+            font-size: 1.3125rem;
             font-weight: bold;
             color: rgba(240, 182, 84, 1);
             display: block;
             margin: 0 0 -0.0625rem 0.5rem;
           }
         }
+		p:nth-child(3){
+			font-size: 1.1875rem;
+			font-weight: bold;
+			color: rgba(240, 182, 84, 1);
+			display: block;
+		}
       }
+	  
     }
     .third-img {
       width: 17.4375rem;
       height: 13.625rem;
       display: block;
-      margin-top: 1.9375rem;
+      margin-top: 1.5625rem;
       position: relative;
       z-index: 5;
     }
@@ -268,20 +312,29 @@ export default {
       z-index: 0;
       .ercode {
         position: relative;
+		width: 102px;
+		height: 140px;
         margin-left: 1.875rem;
         margin-top: 3.75rem;
+		background: white;
         z-index: 5;
+		text-align: center;
         img {
-          width: 5.75rem;
-          height: 5.6875rem;
-          margin-bottom: 0.75rem;
+          // width: 5.75rem;
+          // height: 5.6875rem;
+		  width: 6.375rem;
+		  height: 6.25rem;
+          // margin-bottom: 0.75rem;
         }
         p {
           font-size: 0.875rem;
           font-weight: 500;
-          color: rgba(255, 255, 255, 1);
+		  font-family:Source Han Sans CN;
+          color: rgba(211,62,54,1);
           line-height: 1.125rem;
-          margin-left: 0.28125rem;
+          // margin-left: 0.28125rem;
+		  margin-top: 0;
+		  margin-bottom: 0.375rem;
         }
       }
       .third-big {
@@ -289,6 +342,18 @@ export default {
         height: 100%;
         z-index: 0;
       }
+	  .footer{
+		  width: 100%;
+		  position: fixed;
+		  left: 8.0625rem;
+		  bottom: 1.8125rem;
+		  div{
+			  font-size: 0.875rem;
+			  font-family:Source Han Sans CN;
+			  font-weight:400;
+			  color:rgba(255,255,255,1);
+		  }
+	  }
     }
   }
   .canvas {
