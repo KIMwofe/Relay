@@ -1,33 +1,43 @@
 <template>
-  <div class="home-third" ref="capture">
-    <div class="third-top">
-      <div class="img"></div>
-      <div class="content">
-        <p>
-          <span>我是第</span>
-          <span>{{ number }}</span>
-        </p>
-        <p>
-          <span>老年大学的学员</span>
-          <span>{{ name }}</span>
-        </p>
+  <div class="cv-pg">
+    <div class="home-third" ref="capture">
+      <div class="third-top">
+        <img
+          :src="userImg ? userImg : require('@/images/defultImg.png')"
+          class="img"
+          :onerror="defaultAvatar"
+          :style="userImg ? 'border: 2px solid rgba(255, 255, 255, 1);' :''"
+        />
+        <div class="content">
+          <p>
+            <span>我是第</span>
+            <span>{{ number }}</span>
+          </p>
+          <p>
+            <span>老年大学的学员</span>
+          </p>
+          <p class="username">{{ name }}</p>
+        </div>
+      </div>
+      <img src="@/images/content.png" alt class="third-img" />
+      <div class="third-bot">
+        <div class="ercode">
+          <img src="@/images/er.png" alt />
+          <p>
+            长按保存海报
+            <br />扫码参与接力
+          </p>
+        </div>
+        <div class="footer">
+          <div>老年大学 助力武汉</div>
+          <div>众志成城 共度难关</div>
+        </div>
       </div>
     </div>
-    <img src="@/images/content.png" alt class="third-img" />
-    <div class="third-bot">
-      <div class="ercode">
-        <img src="@/images/er.png" alt />
-        <p>
-          长按保存海报
-          <br />扫码参与接力
-        </p>
-      </div>
-      <div class="footer">
-        <div>老年大学 助力武汉</div>
-        <div>众志成城 共度难关</div>
-      </div>
-    </div>
-    <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" />
+    <template v-if="imageUrl">
+      <img :src="imageUrl" class="canvas" />
+    </template>
+    <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading>
   </div>
 </template>
 
@@ -40,13 +50,16 @@ export default {
     return {
       imageUrl: "",
       name: "",
-      number: ""
+      number: "",
+      userImg: "",
+      defaultAvatar: 'this.src="' + require("@/images/defultImg.png") + '"'
     };
   },
   components: {},
   mounted() {
     this.name = this.$route.query.name;
     this.number = this.$route.query.number;
+    this.userImg = this.$route.params.userImg || false;
     this.$nextTick(() => {
       this.save();
     });
@@ -65,21 +78,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cv-pg {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .home-third {
+  position: absolute;
+  left: -1500px;
   width: 100%;
   height: 100%;
   padding: 3.6875rem 0 0 2.125rem;
   box-sizing: border-box;
-  background: url(~@/images/homeBg.png) no-repeat;
+  background: url(~@/images/homeBg.png) no-repeat center center;
   background-size: 100% 100%;
   .third-top {
     display: flex;
     align-items: center;
     .img {
-      width: 3.6875rem;
-      height: 3.6875rem;
+      width: 4.6875rem;
+      height: 4.6875rem;
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 1);
+      display: block;
     }
     .content {
       margin-left: 0.9375rem;
@@ -121,7 +142,7 @@ export default {
     .ercode {
       position: relative;
       margin-left: 1.875rem;
-      margin-top: 3.75rem;
+      margin-top: 6.75rem;
       z-index: 5;
       img {
         width: 5.75rem;
@@ -157,9 +178,13 @@ export default {
 }
 .canvas {
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+  height: 100%;
+}
+
+.loading {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
