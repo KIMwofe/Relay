@@ -136,14 +136,13 @@ export default {
   .ercode {
     position: relative;
     width: 6.375rem;
-    height: 18.98%;
+    height: 20.98%;
     margin-top: 1.78125rem;
     background: #fff;
     z-index: 5;
-    overflow: hidden;
     img {
       width: 100%;
-      height: 72.85%;
+      height: 78.85%;
       /* margin-bottom: 0.375rem; */
     }
     p {
@@ -155,7 +154,9 @@ export default {
       margin: -0.28125rem 0 0 0;
     }
     p:nth-child(3) {
-      margin: -0.1875rem 0 0 0;
+      background: #fff;
+      margin: -0.1875rem 0 0.375rem 0;
+      padding-bottom: 0.1875rem;
     }
   }
   .third-big {
