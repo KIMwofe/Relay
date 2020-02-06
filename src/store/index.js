@@ -10,7 +10,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    uid: 915,
+    uid: 0,
     goodsId: 0
   },
   mutations: {

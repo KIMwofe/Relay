@@ -1,7 +1,8 @@
 <template>
-  <div class="home" ref="capture">
-    <img src="@/images/audio.png" alt class="audio" @click="play" />
-    <audio src="@/assets/muzic.mp3" autoplay="autoplay" loop ref="MusicPlay" preload="auto"></audio>
+  <div class="home" ref="capture" @click.once.prevent="init">
+    <img v-show="!audioFlag" src="@/images/audio.png" alt class="audio" @click="play" />
+	<img v-show="audioFlag" src="@/images/stop.png" alt class="stop" @click="play" />
+    <audio src="@/assets/muzic.mp3" muted="muted" autoplay="autoplay" loop="loop" id="bg-music" ref="MusicPlay" preload="auto"></audio>
     <div class="home-index">
       <div class="home-index" v-show="show.first">
         <img src="@/images/title.png" alt />
@@ -50,14 +51,13 @@
       <div class="home-bottom" v-show="show.first || show.second"></div>
       <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
     </div>
-    <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" />
+    <!-- <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" /> -->
   </div>
 </template>
 
 <script>
 import api from "@/api/HomeApi.js";
 import html2canvas from "html2canvas";
-
 export default {
   name: "home",
   data() {
@@ -78,23 +78,20 @@ export default {
   mounted() {
 	  this.getSupport();
 	  this.getUserInfo();
-	//   let that = this;
-	// this.$nextTick(() => {
-	// 	that.play();
-	// });
-	// this.play();
   },
   methods: {
+	  init(){
+		  this.$refs.MusicPlay.play();
+		  this.audioFlag = false;
+	  },
 	getSupport(){
 	  api.getSupport().then(res=>{
 		  this.number = res
-		  console.log(res)
 	  })
 	},
 	getUserInfo(){
 	  api.getuUserinfo().then(res=>{
 		  this.userImg = res.avatar
-		  console.log(res.avatar)
 	  })
 	},
     save() {
@@ -110,24 +107,26 @@ export default {
         this.show.first = false;
         this.show.second = true;
       } else if (this.show.second) {
-        this.name.length > 6 ? (this.name = this.name.slice(0, 5) + "...") : "";
-        this.show.second = false;
-        this.show.third = true;
-        setTimeout(() => {
-          this.save();
-        }, 500);
+		  if(this.name.length){
+			  this.name.length > 10 ? (this.name = this.name.slice(0, 5) + "...") : "";
+			  this.show.second = false;
+			  this.show.third = true;
+			  setTimeout(() => {
+			    this.save();
+			  }, 500);
+		  }else{
+			  this.$toast('请输入您的姓名')
+		  }
       }
     },
     play() {
 		let that = this;
-		if(that.audioFlag){
+		if(that.audioFlag){//播放
 			that.$refs.MusicPlay.play();
 			that.audioFlag = false;
-			console.log("播放")
-		}else{
+		}else{//暂停
 			this.$refs.MusicPlay.pause();
 			that.audioFlag = true;
-			console.log("暂停")
 		}
     }
   },
@@ -154,6 +153,14 @@ export default {
     right: 0.9375rem;
     animation: run 2s infinite;
 	z-index: 100;
+  }
+  .stop{
+	  width: 2.3125rem;
+	  height: 2.3125rem;
+	  position: absolute;
+	  top: 0.78125rem;
+	  right: 0.9375rem;
+	  z-index: 100;
   }
   .home-index {
     width: 100%;
@@ -249,6 +256,7 @@ export default {
         color: rgba(187, 41, 41, 1);
         border: 0;
         margin-top: 3.4375rem;
+		z-index: 99;
       }
     }
   }
