@@ -5,11 +5,11 @@
       <div class="content">
         <p>
           <span>我是第</span>
-          <span>8591</span>
+          <span>{{ number }}</span>
         </p>
         <p>
           <span>老年大学的学员</span>
-          <span>{{name}}</span>
+          <span>{{ name }}</span>
         </p>
       </div>
     </div>
@@ -21,6 +21,10 @@
           长按保存海报
           <br />扫码参与接力
         </p>
+      </div>
+      <div class="footer">
+        <div>老年大学 助力武汉</div>
+        <div>众志成城 共度难关</div>
       </div>
     </div>
     <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" />
@@ -36,32 +40,26 @@ export default {
     return {
       imageUrl: "",
       name: "",
-      username: ""
+      number: ""
     };
   },
   components: {},
   mounted() {
-      this.name = this.$route.query.name 
-      
-       this.$nextTick(() => {
-        this.save();
-      });
+    this.name = this.$route.query.name;
+    this.number = this.$route.query.number;
+    this.$nextTick(() => {
+      this.save();
+    });
   },
   methods: {
     save() {
-      // const el = this.$refs.capture;
-      // const options = {
-      //   backgroundColor: null
-      // };
-      // const canvas = html2canvas(el, options);
-      // this.imageUrl = canvas.toDataURL("image/png");
       html2canvas(this.$refs.capture, {
         backgroundColor: null
       }).then(canvas => {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
       });
-    },
+    }
   }
 };
 </script>
@@ -142,6 +140,18 @@ export default {
       width: 100%;
       height: 100%;
       z-index: 0;
+    }
+    .footer {
+      width: 100%;
+      position: fixed;
+      left: 8.0625rem;
+      bottom: 1.8125rem;
+      div {
+        font-size: 0.875rem;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 1);
+      }
     }
   }
 }
