@@ -6,12 +6,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Start from "../views/start.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    name: "start",
+    component: Start,
+    meta: {
+      title: "老年大学助力武汉"
+    }
+  },
+  {
+    path: "/home",
     name: "home",
     component: Home,
     meta: {

@@ -15,15 +15,9 @@
         <button @click="next"></button>
       </div>
       <div class="home-bottom" v-show="show.first || show.second"></div>
-      <img
-        src="@/images/button.png"
-        alt
-        @click="next"
-        v-show="show.first"
-        class="netxBtn"
-      />
+      <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
     </div>
-    <!-- <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" /> -->
+    <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" />
   </div>
 </template>
 
@@ -137,6 +131,8 @@ export default {
       }
     }
     .home-bottom {
+      position: fixed;
+      bottom: 0;
       width: 100%;
       height: 20.21875rem;
       background: url(~@/images/relay.png) no-repeat;
@@ -182,8 +178,9 @@ export default {
       button {
         width: 17.1875rem;
         height: 3.125rem;
-        background: rgba(240, 182, 84, 1);
-        border-radius: 50px;
+        background: url("~@/images/second-btn.png") no-repeat;
+        background-size: 100%;
+        border-radius: 3.125rem;
         line-height: 3.125rem;
         text-align: center;
         font-size: 1.375rem;
@@ -244,6 +241,8 @@ export default {
       z-index: 5;
     }
     .third-bot {
+      position: fixed;
+      bottom: 0;
       width: 100%;
       height: 21.40625rem;
       background: url(~@/images/bigrelay.png) no-repeat;
