@@ -5,11 +5,11 @@
       <div class="content">
         <p>
           <span>我是第</span>
-          <span>{{number}}</span>
+          <span>{{ number }}</span>
         </p>
         <p>
           <span>老年大学的学员</span>
-          <span>{{name}}</span>
+          <span>{{ name }}</span>
         </p>
       </div>
     </div>

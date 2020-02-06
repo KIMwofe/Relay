@@ -5,7 +5,7 @@
         <img src="@/images/title.png" alt />
         <h1>你是老年大学学员中的</h1>
         <h2>
-          <span>{{number}}</span>
+          <span>{{ number }}</span>
           <i>位承诺者</i>
         </h2>
       </div>
@@ -15,7 +15,13 @@
         <button @click="next"></button>
       </div>
       <div class="home-bottom" v-show="show.first || show.second"></div>
-      <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
+      <img
+        src="@/images/button.png"
+        alt
+        @click="next"
+        v-show="show.first"
+        class="netxBtn"
+      />
     </div>
     <!-- <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" /> -->
   </div>
@@ -311,4 +317,3 @@ export default {
   }
 }
 </style>
-

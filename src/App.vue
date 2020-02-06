@@ -14,8 +14,20 @@
       ref="MusicPlay"
       preload="auto"
     ></audio>
-    <img v-show="!audioFlag" src="@/images/audio.png" alt class="audio" @click="play" />
-    <img v-show="audioFlag" src="@/images/stop.png" alt class="stop" @click="play" />
+    <img
+      v-show="!audioFlag"
+      src="@/images/audio.png"
+      alt
+      class="audio"
+      @click="play"
+    />
+    <img
+      v-show="audioFlag"
+      src="@/images/stop.png"
+      alt
+      class="stop"
+      @click="play"
+    />
     <router-view />
   </div>
 </template>
