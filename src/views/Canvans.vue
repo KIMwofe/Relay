@@ -33,9 +33,7 @@
     <template v-if="imageUrl">
       <img :src="imageUrl" class="canvas" />
     </template>
-    <van-loading class="loading" size="24px" vertical v-else
-      >生成图片中...</van-loading
-    >
+    <!-- <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading> -->
   </div>
 </template>
 
@@ -50,7 +48,8 @@ export default {
       name: "",
       number: "",
       userImg: "",
-      defaultAvatar: 'this.src="' + require("@/images/defultImg.png") + '"'
+      defaultAvatar: 'this.src="' + require("@/images/defultImg.png") + '"',
+      show: false
     };
   },
   components: {},
@@ -58,9 +57,11 @@ export default {
     this.name = this.$route.query.name;
     this.number = this.$route.query.number;
     this.userImg = this.$route.params.userImg || false;
-    this.$nextTick(() => {
+    // this.save();
+    setTimeout(() => {
       this.save();
-    });
+    }, 1000);
+    // this.$nextTick(() => {});
   },
   methods: {
     save() {
@@ -86,7 +87,7 @@ export default {
 
 .home-third {
   position: absolute;
-  left: -1500px;
+  /* left: -1500px; */
   width: 100%;
   height: 100%;
   padding: 3.6875rem 0 0 2.125rem;
@@ -95,6 +96,7 @@ export default {
   background-repeat: no-repeat, no-repeat;
   background-position: bottom center, center center;
   background-size: 100% 56.22%, 100% 100%;
+  z-index: 0;
   .third-top {
     display: flex;
     align-items: center;
@@ -184,6 +186,10 @@ export default {
 .canvas {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
 }
 
 .loading {
