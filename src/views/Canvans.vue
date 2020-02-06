@@ -20,18 +20,14 @@
         </div>
       </div>
       <img src="@/images/content.png" alt class="third-img" />
-      <div class="third-bot">
-        <div class="ercode">
-          <img src="@/images/er.png" alt />
-          <p>
-            长按保存海报
-            <br />扫码参与接力
-          </p>
-        </div>
-        <div class="footer">
-          <div>老年大学 助力武汉</div>
-          <div>众志成城 共度难关</div>
-        </div>
+      <div class="ercode">
+        <img src="@/images/er.png" alt />
+        <p>长按保存海报</p>
+        <p>扫码参与接力</p>
+      </div>
+      <div class="footer">
+        <div>老年大学 助力武汉</div>
+        <div>众志成城 共度难关</div>
       </div>
     </div>
     <template v-if="imageUrl">
@@ -91,88 +87,91 @@ export default {
   height: 100%;
   padding: 3.6875rem 0 0 2.125rem;
   box-sizing: border-box;
-  background: url(~@/images/homeBg.png) no-repeat center center;
-  background-size: 100% 100%;
+  background: url(~@/images/bigrelay.png), url(~@/images/canBg.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom center, center center;
+  background-size: 100% 56.22%, 100% 100%;
   .third-top {
     display: flex;
     align-items: center;
     .img {
-      width: 4.6875rem;
-      height: 4.6875rem;
+      width: 4.7875rem;
+      height: 100%;
       border-radius: 50%;
       display: block;
     }
     .content {
       margin-left: 0.9375rem;
       p {
-        font-size: 1.1875rem;
+        font-size: 1.125rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 1);
         display: flex;
         align-items: flex-end;
         margin: 0;
         span:nth-child(2) {
-          font-size: 1.25rem;
+          font-size: 1.3125rem;
           font-weight: bold;
           color: rgba(240, 182, 84, 1);
           display: block;
           margin: 0 0 -0.0625rem 0.5rem;
         }
       }
+      .username {
+        font-size: 1.1875rem;
+        font-weight: bold;
+        color: rgba(240, 182, 84, 1);
+        display: block;
+      }
     }
   }
   .third-img {
     width: 17.4375rem;
-    height: 13.625rem;
+    height: 32.23%;
     display: block;
     margin-top: 1.9375rem;
     position: relative;
     z-index: 5;
   }
-  .third-bot {
-    width: 100%;
-    height: 21.40625rem;
-    background: url(~@/images/bigrelay.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  .ercode {
+    position: relative;
+    width: 5.75rem;
+    margin-top: 1.78125rem;
+    background: #fff;
+    z-index: 5;
     overflow: hidden;
+    img {
+      width: 5.75rem;
+      height: 5.6875rem;
+      /* margin-bottom: 0.375rem; */
+    }
+    p {
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(211, 62, 54, 1);
+      line-height: 1.125rem;
+      margin: -0.28125rem 0 0 0;
+    }
+    p:nth-child(3) {
+      margin: -0.1875rem 0 0 0;
+    }
+  }
+  .third-big {
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    .ercode {
-      position: relative;
-      margin-left: 1.875rem;
-      margin-top: 6.75rem;
-      z-index: 5;
-      img {
-        width: 5.75rem;
-        height: 5.6875rem;
-        margin-bottom: 0.75rem;
-      }
-      p {
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 1);
-        line-height: 1.125rem;
-        margin-left: 0.28125rem;
-      }
-    }
-    .third-big {
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-    .footer {
-      width: 100%;
-      position: fixed;
-      left: 8.0625rem;
-      bottom: 1.8125rem;
-      div {
-        font-size: 0.875rem;
-        font-family: Source Han Sans CN;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 1);
-      }
+  }
+  .footer {
+    width: 100%;
+    position: fixed;
+    left: 8.0625rem;
+    bottom: 1.8125rem;
+    div {
+      font-size: 0.875rem;
+      font-family: Source Han Sans CN;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
     }
   }
 }
