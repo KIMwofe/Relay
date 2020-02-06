@@ -9,7 +9,7 @@
         </p>
         <p>
           <span>老年大学的学员</span>
-          <span>{{name}}</span>
+          <span>{{ name }}</span>
         </p>
       </div>
     </div>
@@ -41,11 +41,11 @@ export default {
   },
   components: {},
   mounted() {
-      this.name = this.$route.query.name 
-      
-       this.$nextTick(() => {
-        this.save();
-      });
+    this.name = this.$route.query.name;
+
+    this.$nextTick(() => {
+      this.save();
+    });
   },
   methods: {
     save() {
@@ -61,7 +61,7 @@ export default {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
       });
-    },
+    }
   }
 };
 </script>
