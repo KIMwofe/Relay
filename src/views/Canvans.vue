@@ -10,8 +10,8 @@
           </p>
           <p>
             <span>老年大学的学员</span>
-            <span>{{ name }}</span>
           </p>
+          <p class="username">{{ name }}</p>
         </div>
       </div>
       <img src="@/images/content.png" alt class="third-img" />
@@ -32,9 +32,7 @@
     <template v-if="imageUrl">
       <img :src="imageUrl" class="canvas" />
     </template>
-    <van-loading class="loading" size="24px" vertical v-else
-      >生成图片中...</van-loading
-    >
+    <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading>
   </div>
 </template>
 
@@ -91,8 +89,8 @@ export default {
     display: flex;
     align-items: center;
     .img {
-      width: 3.6875rem;
-      height: 3.6875rem;
+      width: 4.6875rem;
+      height: 4.6875rem;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 1);
     }
@@ -112,6 +110,12 @@ export default {
           display: block;
           margin: 0 0 -0.0625rem 0.5rem;
         }
+      }
+      .username {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: rgba(240, 182, 84, 1);
+        display: block;
       }
     }
   }
