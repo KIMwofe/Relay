@@ -23,7 +23,6 @@
         class="netxBtn"
       />
     </div>
-    <!-- <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" /> -->
   </div>
 </template>
 
