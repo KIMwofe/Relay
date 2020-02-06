@@ -1,9 +1,12 @@
 <template>
-  <div class="home" ref="capture" @click.once.prevent="init">
+  <div class="home" ref="capture">
     <img v-show="!audioFlag" src="@/images/audio.png" alt class="audio" @click="play" />
 	<img v-show="audioFlag" src="@/images/stop.png" alt class="stop" @click="play" />
     <audio src="@/assets/muzic.mp3" muted="muted" autoplay="autoplay" loop="loop" id="bg-music" ref="MusicPlay" preload="auto"></audio>
     <div class="home-index">
+		<div v-show="show.start" class="home-start">
+			<div class="start-btn" @click="init">这是个按钮</div>
+		</div>
       <div class="home-index" v-show="show.first">
         <img src="@/images/title.png" alt />
         <h1>你是老年大学学员中的</h1>
@@ -15,7 +18,7 @@
       <div v-show="show.second" class="home-second">
         <h1>输入姓名</h1>
         <input type="text" placeholder="输入您的姓名" v-model="name" />
-        <button @click="next">下一步</button>
+        <div class="div-btn" @click="next"></div>
       </div>
       <div v-show="show.third" class="home-third">
         <div class="third-top">
@@ -65,7 +68,8 @@ export default {
 	  audioFlag: false,
       imageUrl: "",
       show: {
-        first: true,
+		start: true,
+        first: false,
         second: false,
         third: false
       },
@@ -83,6 +87,8 @@ export default {
 	  init(){
 		  this.$refs.MusicPlay.play();
 		  this.audioFlag = false;
+		  this.show.start = false;
+		  this.show.first = true;
 	  },
 	getSupport(){
 	  api.getSupport().then(res=>{
@@ -103,21 +109,21 @@ export default {
       });
     },
     next() {
-      if (this.show.first) {
-        this.show.first = false;
-        this.show.second = true;
-      } else if (this.show.second) {
-		  if(this.name.length){
+		if (this.show.first) {
+			this.show.first = false;
+			this.show.second = true;
+		} else if (this.show.second) {
+			if(this.name.length){
 			  this.name.length > 10 ? (this.name = this.name.slice(0, 5) + "...") : "";
 			  this.show.second = false;
 			  this.show.third = true;
 			  setTimeout(() => {
-			    this.save();
+				this.save();
 			  }, 500);
-		  }else{
+			}else{
 			  this.$toast('请输入您的姓名')
-		  }
-      }
+			}
+		}
     },
     play() {
 		let that = this;
@@ -213,9 +219,20 @@ export default {
       width: 15.75rem;
       height: 4.0625rem;
       position: absolute;
-      bottom: 2.3125rem;
+      bottom: 3.625rem;
 	  z-index: 99;
     }
+	.home-start{
+		width: 100%;
+		height: 100%;
+		background: red;
+		z-index: 100;
+		.start-btn{
+			width: 12.5rem;
+			height: 12.5rem;
+			background-color: lightblue;
+		}
+	}
     .home-second {
       width: 100%;
       display: flex;
@@ -244,11 +261,12 @@ export default {
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 1);
         margin-top: 0.78125rem;
       }
-      button {
+      .div-btn {
         width: 17.1875rem;
         height: 3.125rem;
-        background: rgba(240, 182, 84, 1);
-        border-radius: 50px;
+        background: url('~@/images/second-btn.png') no-repeat;
+		background-size: 100%;
+        border-radius: 3.125rem;
         line-height: 3.125rem;
         text-align: center;
         font-size: 1.375rem;
