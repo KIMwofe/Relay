@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-01-09 10:39:39
  * @LastEditors  : hxz
- * @LastEditTime : 2020-01-18 16:34:40
+ * @LastEditTime : 2020-02-06 21:25:09
  -->
 <template>
   <div id="app">
@@ -12,7 +12,7 @@
 <script>
 export default {
   mounted() {
-    if (process.env.NODE_ENV == "development") {
+    if (process.env.NODE_ENV == "production") {
       this.init();
     } else {
       this.$wx.miniProgram.getEnv(res => {

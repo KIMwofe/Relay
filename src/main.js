@@ -13,9 +13,8 @@ import wx from "jweixin-module";
 Vue.prototype.$wx = wx;
 Vue.prototype.$utils = utils;
 
-import {  Loading, Toast} from "vant";
-Vue.use(Loading)
-  .use(Toast)
+import { Loading, Toast } from "vant";
+Vue.use(Loading).use(Toast);
 
 import VueClipboard from "vue-clipboard2";
 Vue.use(VueClipboard);
