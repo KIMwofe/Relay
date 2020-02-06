@@ -166,7 +166,7 @@ export default {
   }
   .footer {
     width: 100%;
-    position: fixed;
+    position: absolute;
     left: 8.0625rem;
     bottom: 1.8125rem;
     div {
