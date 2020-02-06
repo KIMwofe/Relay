@@ -136,6 +136,8 @@ export default {
       }
     }
     .home-bottom {
+      position: fixed;
+      bottom: 0;
       width: 100%;
       height: 20.21875rem;
       background: url(~@/images/relay.png) no-repeat;
@@ -178,11 +180,12 @@ export default {
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 1);
         margin-top: 0.78125rem;
       }
-      button {
+      .div-btn {
         width: 17.1875rem;
         height: 3.125rem;
-        background: rgba(240, 182, 84, 1);
-        border-radius: 50px;
+        background: url("~@/images/second-btn.png") no-repeat;
+        background-size: 100%;
+        border-radius: 3.125rem;
         line-height: 3.125rem;
         text-align: center;
         font-size: 1.375rem;
@@ -243,6 +246,8 @@ export default {
       z-index: 5;
     }
     .third-bot {
+      position: fixed;
+      bottom: 0;
       width: 100%;
       height: 21.40625rem;
       background: url(~@/images/bigrelay.png) no-repeat;
