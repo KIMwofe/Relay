@@ -22,7 +22,7 @@ export default {
   methods: {
     init() {
       //播放音乐并且跳转到首页
-      this.$router.push({ path: "home" });
+      this.$router.replace({ path: "home" });
     }
   }
 };

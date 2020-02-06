@@ -2,7 +2,12 @@
   <div class="cv-pg">
     <div class="home-third" ref="capture">
       <div class="third-top">
-        <div class="img"></div>
+        <img
+          :src="userImg ? userImg : require('@/images/defultImg.png')"
+          class="img"
+          :onerror="defaultAvatar"
+          :style="userImg ? 'border: 2px solid rgba(255, 255, 255, 1);' : ''"
+        />
         <div class="content">
           <p>
             <span>我是第</span>
@@ -10,8 +15,8 @@
           </p>
           <p>
             <span>老年大学的学员</span>
-            <span>{{ name }}</span>
           </p>
+          <p class="username">{{ name }}</p>
         </div>
       </div>
       <img src="@/images/content.png" alt class="third-img" />
@@ -47,13 +52,16 @@ export default {
     return {
       imageUrl: "",
       name: "",
-      number: ""
+      number: "",
+      userImg: "",
+      defaultAvatar: 'this.src="' + require("@/images/defultImg.png") + '"'
     };
   },
   components: {},
   mounted() {
     this.name = this.$route.query.name;
     this.number = this.$route.query.number;
+    this.userImg = this.$route.params.userImg || false;
     this.$nextTick(() => {
       this.save();
     });
@@ -93,10 +101,10 @@ export default {
     display: flex;
     align-items: center;
     .img {
-      width: 3.6875rem;
-      height: 3.6875rem;
+      width: 4.6875rem;
+      height: 4.6875rem;
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 1);
+      display: block;
     }
     .content {
       margin-left: 0.9375rem;
@@ -138,7 +146,7 @@ export default {
     .ercode {
       position: relative;
       margin-left: 1.875rem;
-      margin-top: 3.75rem;
+      margin-top: 6.75rem;
       z-index: 5;
       img {
         width: 5.75rem;

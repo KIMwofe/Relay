@@ -67,6 +67,9 @@ export default {
             query: {
               name: this.name,
               number: this.number
+            },
+            params: {
+              userImg: this.userImg
             }
           });
         } else {
