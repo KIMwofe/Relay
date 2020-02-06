@@ -139,14 +139,15 @@ export default {
   }
   .ercode {
     position: relative;
-    width: 5.75rem;
+    width: 6.375rem;
+    height: 18.98%;
     margin-top: 1.78125rem;
     background: #fff;
     z-index: 5;
     overflow: hidden;
     img {
-      width: 5.75rem;
-      height: 5.6875rem;
+      width: 100%;
+      height: 72.85%;
       /* margin-bottom: 0.375rem; */
     }
     p {
