@@ -17,7 +17,6 @@
       <div class="home-bottom" v-show="show.first || show.second"></div>
       <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
     </div>
-    <img :src="imageUrl" class="canvas" v-show="imageUrl.length > 0" />
   </div>
 </template>
 
