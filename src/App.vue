@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-01-09 10:39:39
  * @LastEditors  : hxz
- * @LastEditTime : 2020-02-06 21:25:09
+ * @LastEditTime : 2020-02-06 23:58:26
  -->
 <template>
   <div id="app" @click.once.prevent="muzic">
@@ -40,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    if (process.env.NODE_ENV == "production") {
+    if (process.env.NODE_ENV) {
       this.init();
     } else {
       this.$wx.miniProgram.getEnv(res => {

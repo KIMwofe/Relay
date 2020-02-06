@@ -61,7 +61,9 @@ export default {
   methods: {
     save() {
       html2canvas(this.$refs.capture, {
-        backgroundColor: null
+        backgroundColor: null,
+        allowTaint: true,
+        useCORS: true
       }).then(canvas => {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
