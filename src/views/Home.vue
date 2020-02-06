@@ -15,13 +15,7 @@
         <button @click="next"></button>
       </div>
       <div class="home-bottom" v-show="show.first || show.second"></div>
-      <img
-        src="@/images/button.png"
-        alt
-        @click="next"
-        v-show="show.first"
-        class="netxBtn"
-      />
+      <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
     </div>
   </div>
 </template>
@@ -180,7 +174,7 @@ export default {
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 1);
         margin-top: 0.78125rem;
       }
-      .div-btn {
+      button {
         width: 17.1875rem;
         height: 3.125rem;
         background: url("~@/images/second-btn.png") no-repeat;
