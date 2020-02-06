@@ -13,11 +13,11 @@ export default new Vuex.Store({
     uid: 915,
     goodsId: 0
   },
-  // mutations: {
-  //   setAuth(state, val) {
-  //     let { uid, goodsId } = val;
-  //     state.uid = uid;
-  //     state.goodsId = goodsId;
-  //   }
-  // }
+  mutations: {
+    setAuth(state, val) {
+      let { uid, goodsId } = val;
+      state.uid = uid;
+      state.goodsId = goodsId;
+    }
+  }
 });

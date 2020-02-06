@@ -70,7 +70,7 @@ export default {
         third: false
       },
       name: "",
-	  number: 0,
+	  number: 1,
 	  userImg: '',
     };
   },
@@ -78,7 +78,6 @@ export default {
   mounted() {
 	  this.getSupport();
 	  this.getUserInfo();
-	  // audio.
 	//   let that = this;
 	// this.$nextTick(() => {
 	// 	that.play();
