@@ -148,6 +148,7 @@ export default {
       position: absolute;
       bottom: 2.3125rem;
       z-index: 99;
+	  animation: move 0.8s ease infinite both;
     }
     .home-second {
       width: 100%;
@@ -315,6 +316,17 @@ export default {
   :-ms-input-placeholder {
     /* Internet Explorer 10+ */
     color: #ffffff;
+  }
+  @keyframes move {
+    0% {
+      transform: none;
+    }
+    50% {
+      transform: scale3d(0.8, 0.8, 0.8);
+    }
+    100% {
+      transform: none;
+    }
   }
 }
 </style>

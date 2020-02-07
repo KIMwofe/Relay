@@ -41,6 +41,7 @@ export default {
   .home-start {
     width: 8.75rem;
     height: 13.125rem;
+	margin-top: -1.25rem;
     .start-btn {
       width: 8.75rem;
       height: 8.75rem;
@@ -72,17 +73,6 @@ export default {
     }
   }
   @keyframes handle {
-    0% {
-      transform: none;
-    }
-    50% {
-      transform: scale3d(0.8, 0.8, 0.8);
-    }
-    100% {
-      transform: none;
-    }
-  }
-  @keyframes btn {
     0% {
       transform: none;
     }
