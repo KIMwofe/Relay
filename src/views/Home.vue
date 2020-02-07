@@ -15,7 +15,13 @@
         <button @click="next"></button>
       </div>
       <div class="home-bottom" v-show="show.first || show.second"></div>
-      <img src="@/images/button.png" alt @click="next" v-show="show.first" class="netxBtn" />
+      <img
+        src="@/images/button.png"
+        alt
+        @click="next"
+        v-show="show.first"
+        class="netxBtn"
+      />
     </div>
   </div>
 </template>

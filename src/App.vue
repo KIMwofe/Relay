@@ -5,9 +5,27 @@
  -->
 <template>
   <div id="app" @click.once.prevent="muzic">
-    <audio src="@/assets/muzic.mp3" loop="loop" id="bg-music" ref="MusicPlay" preload="auto"></audio>
-    <img v-show="!audioFlag" src="@/images/audio.png" alt class="audio" @click="play" />
-    <img v-show="audioFlag" src="@/images/stop.png" alt class="stop" @click="play" />
+    <audio
+      :src="audioUrl"
+      loop="loop"
+      id="bg-music"
+      ref="MusicPlay"
+      preload="auto"
+    ></audio>
+    <img
+      v-show="!audioFlag"
+      src="@/images/audio.png"
+      alt
+      class="audio"
+      @click="play"
+    />
+    <img
+      v-show="audioFlag"
+      src="@/images/stop.png"
+      alt
+      class="stop"
+      @click="play"
+    />
     <router-view />
   </div>
 </template>
@@ -16,7 +34,8 @@
 export default {
   data() {
     return {
-      audioFlag: false
+      audioFlag: false,
+      audioUrl: require("@/assets/muzic.mp3")
     };
   },
   mounted() {
@@ -26,6 +45,7 @@ export default {
       this.$wx.miniProgram.getEnv(res => {
         if (res.miniprogram) {
           this.init();
+          this.autoplay();
         }
       });
     }
@@ -42,6 +62,26 @@ export default {
     muzic() {
       this.$refs.MusicPlay.play();
       this.audioFlag = false;
+    },
+    autoplay() {
+      console.log(this);
+      let audio = this.$refs.MusicPlay;
+      console.log(audio);
+      audio.volume = 0.8;
+      this.$nextTick(() => {
+        audio.play();
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        console.log(document.hidden);
+        if (document.hidden) {
+          this.$refs.MusicPlay.pause();
+        } else {
+          setTimeout(() => {
+            this.$refs.MusicPlay.play();
+          }, 2000);
+        }
+      });
     },
     play() {
       let that = this;

@@ -41,6 +41,7 @@ export default {
   .home-start {
     width: 8.75rem;
     height: 13.125rem;
+    margin-top: -2.5rem;
     .start-btn {
       width: 8.75rem;
       height: 8.75rem;
