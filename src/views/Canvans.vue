@@ -1,6 +1,10 @@
 <template>
   <div class="cv-pg">
-    <div class="home-third" ref="capture" :style="!system ? 'left: -1500px;' : 'left: 1500px;'">
+    <div
+      class="home-third"
+      ref="capture"
+      :style="!system ? 'left: -1500px;' : 'left: 1500px;'"
+    >
       <div class="third-top">
         <img
           :src="userImg ? userImg : require('@/images/defultImg.png')"
@@ -33,13 +37,15 @@
     <template v-if="imageUrl">
       <img :src="imageUrl" class="canvas" />
     </template>
-    <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading>
+    <van-loading class="loading" size="24px" vertical v-else
+      >生成图片中...</van-loading
+    >
   </div>
 </template>
 
 <script>
 import html2canvas from "html2canvas";
-
+import { Toast } from "vant";
 export default {
   name: "canvans",
   data() {
@@ -73,6 +79,7 @@ export default {
       }).then(canvas => {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
+        Toast("长按图片保存海报");
       });
     },
     appSource() {

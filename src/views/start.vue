@@ -1,3 +1,8 @@
+<!--
+ * @Date: 2020-02-07 14:23:30
+ * @LastEditors: hxz
+ * @LastEditTime: 2020-02-07 14:24:49
+ -->
 <template>
   <div class="start">
     <div class="home-start">
@@ -41,7 +46,7 @@ export default {
   .home-start {
     width: 8.75rem;
     height: 13.125rem;
-	margin-top: -1.25rem;
+    margin-top: -2.5rem;
     .start-btn {
       width: 8.75rem;
       height: 8.75rem;
