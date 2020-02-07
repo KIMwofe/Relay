@@ -88,11 +88,11 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  width: 100%;
-  height: 100%;
-  background: url(~@/images/homeBg.png) no-repeat;
-  background-size: 100% 100%;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(~@/images/homeBg.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
   .home-index {
     width: 100%;
     height: 100%;
@@ -135,12 +135,14 @@ export default {
     .home-bottom {
       position: fixed;
       bottom: 0;
+	  left:0;
       width: 100%;
-      height: 20.21875rem;
+      // height: 20.21875rem;
+	  height: 42.5%;
       background: url(~@/images/relay.png) no-repeat;
       background-size: 100% 100%;
-      position: absolute;
-      bottom: 0;
+      // position: absolute;
+      // bottom: 0;
     }
     .netxBtn {
       width: 15.75rem;
