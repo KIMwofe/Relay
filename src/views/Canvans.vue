@@ -1,10 +1,6 @@
 <template>
   <div class="cv-pg">
-    <div
-      class="home-third"
-      ref="capture"
-      :style="!system ? 'left: -1500px;' : 'left: 1500px;'"
-    >
+    <div class="home-third" ref="capture" :style="!system ? 'left: -1500px;' : 'left: 1500px;'">
       <div class="third-top">
         <img
           :src="userImg ? userImg : require('@/images/defultImg.png')"
@@ -37,9 +33,7 @@
     <template v-if="imageUrl">
       <img :src="imageUrl" class="canvas" />
     </template>
-    <van-loading class="loading" size="24px" vertical v-else
-      >生成图片中...</van-loading
-    >
+    <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading>
   </div>
 </template>
 
@@ -133,17 +127,17 @@ export default {
         align-items: flex-end;
         margin: 0;
         span:nth-child(2) {
-          font-size: 1.3125rem;
-          font-weight: bold;
-          color: rgba(240, 182, 84, 1);
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #ffd259;
           display: block;
           margin: 0 0 -0.0625rem 0.5rem;
         }
       }
       .username {
-        font-size: 1.1875rem;
-        font-weight: bold;
-        color: rgba(240, 182, 84, 1);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #ffd259;
         display: block;
       }
     }
@@ -170,7 +164,7 @@ export default {
     }
     p {
       text-align: center;
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
       font-weight: 500;
       color: rgba(211, 62, 54, 1);
       line-height: 1.125rem;
@@ -178,7 +172,7 @@ export default {
     }
     p:nth-child(3) {
       background: #fff;
-      margin: -0.1875rem 0 0.375rem 0;
+      margin: 0 0 0.375rem 0;
       padding-bottom: 0.1875rem;
     }
   }
