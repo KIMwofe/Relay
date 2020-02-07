@@ -22,10 +22,7 @@ export default {
   methods: {
     init() {
       //播放音乐并且跳转到首页
-      this.$router.push({ path: "home" });
-	  // this.$refs.MusicPlay.play();
-	  // this.$refs.MusicPlay.play();
-	  // Vue.$data.audioFlag = false;
+      this.$router.replace({ path: "home" });
     }
   }
 };
@@ -76,17 +73,6 @@ export default {
     }
   }
   @keyframes handle {
-    0% {
-      transform: none;
-    }
-    50% {
-      transform: scale3d(0.8, 0.8, 0.8);
-    }
-    100% {
-      transform: none;
-    }
-  }
-  @keyframes btn {
     0% {
       transform: none;
     }

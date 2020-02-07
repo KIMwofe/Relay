@@ -5,29 +5,9 @@
  -->
 <template>
   <div id="app" @click.once.prevent="muzic">
-    <audio
-      src="@/assets/muzic.mp3"
-      muted="muted"
-      autoplay="autoplay"
-      loop="loop"
-      id="bg-music"
-      ref="MusicPlay"
-      preload="auto"
-    ></audio>
-    <img
-      v-show="!audioFlag"
-      src="@/images/audio.png"
-      alt
-      class="audio"
-      @click="play"
-    />
-    <img
-      v-show="audioFlag"
-      src="@/images/stop.png"
-      alt
-      class="stop"
-      @click="play"
-    />
+    <audio src="@/assets/muzic.mp3" loop="loop" id="bg-music" ref="MusicPlay" preload="auto"></audio>
+    <img v-show="!audioFlag" src="@/images/audio.png" alt class="audio" @click="play" />
+    <img v-show="audioFlag" src="@/images/stop.png" alt class="stop" @click="play" />
     <router-view />
   </div>
 </template>
