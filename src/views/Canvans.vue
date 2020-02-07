@@ -125,7 +125,7 @@ export default {
         align-items: flex-end;
         margin: 0;
         span:nth-child(2) {
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           font-weight: 700;
           color: #ffd259;
           display: block;
@@ -133,7 +133,7 @@ export default {
         }
       }
       .username {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #ffd259;
         display: block;
