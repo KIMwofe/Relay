@@ -1,6 +1,6 @@
 <template>
   <div class="cv-pg">
-    <div class="home-third" ref="capture">
+    <div class="home-third" ref="capture" :style="!system ? 'left: -1500px;' : 'left: 1500px;'">
       <div class="third-top">
         <img
           :src="userImg ? userImg : require('@/images/defultImg.png')"
@@ -33,7 +33,7 @@
     <template v-if="imageUrl">
       <img :src="imageUrl" class="canvas" />
     </template>
-    <!-- <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading> -->
+    <van-loading class="loading" size="24px" vertical v-else>生成图片中...</van-loading>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
       number: "",
       userImg: "",
       defaultAvatar: 'this.src="' + require("@/images/defultImg.png") + '"',
-      show: false
+      system: false
     };
   },
   components: {},
@@ -58,6 +58,7 @@ export default {
     this.number = this.$route.query.number;
     this.userImg = this.$route.params.userImg || false;
     // this.save();
+    this.appSource();
     setTimeout(() => {
       this.save();
     }, 1000);
@@ -71,6 +72,15 @@ export default {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
       });
+    },
+    appSource() {
+      const u = navigator.userAgent;
+      const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      if (isiOS) {
+        this.system = true;
+      } else {
+        this.system = false;
+      }
     }
   }
 };
