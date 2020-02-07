@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-01-09 10:39:39
  * @LastEditors  : hxz
- * @LastEditTime : 2020-02-07 14:26:36
+ * @LastEditTime : 2020-02-07 16:02:04
  */
 import Vue from "vue";
 import "./plugins/axios";
@@ -23,10 +23,10 @@ Vue.config.productionTip = false;
 Vue.prototype.$toast = Toast;
 
 /* 手机查看console */
-if (process.env.NODE_ENV !== "development") {
+/* if (process.env.NODE_ENV !== "development") {
   var VConsole = require("vconsole/dist/vconsole.min.js");
   new VConsole();
-}
+} */
 
 new Vue({
   store,
