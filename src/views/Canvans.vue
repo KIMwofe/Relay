@@ -12,6 +12,7 @@
           <p>
             <span>我是第</span>
             <span>{{ number }}</span>
+            <span>位</span>
           </p>
           <p>
             <span>老年大学的学员</span>
@@ -131,7 +132,7 @@ export default {
           font-weight: 700;
           color: #ffd259;
           display: block;
-          margin: 0 0 -0.0625rem 0.5rem;
+          margin: 0 0.45rem -0.0625rem 0.5rem;
         }
       }
       .username {
