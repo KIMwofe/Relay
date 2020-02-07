@@ -23,6 +23,9 @@ export default {
     init() {
       //播放音乐并且跳转到首页
       this.$router.push({ path: "home" });
+	  // this.$refs.MusicPlay.play();
+	  // this.$refs.MusicPlay.play();
+	  // Vue.$data.audioFlag = false;
     }
   }
 };
@@ -41,6 +44,7 @@ export default {
   .home-start {
     width: 8.75rem;
     height: 13.125rem;
+	margin-top: -1.25rem;
     .start-btn {
       width: 8.75rem;
       height: 8.75rem;
