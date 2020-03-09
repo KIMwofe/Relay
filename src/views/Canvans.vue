@@ -12,6 +12,7 @@
           <p>
             <span>我是第</span>
             <span>{{ number }}</span>
+            <span>位</span>
           </p>
           <p>
             <span>老年大学的学员</span>
@@ -39,7 +40,7 @@
 
 <script>
 import html2canvas from "html2canvas";
-
+import { Toast } from "vant";
 export default {
   name: "canvans",
   data() {
@@ -73,6 +74,7 @@ export default {
       }).then(canvas => {
         let dataURL = canvas.toDataURL("image/png");
         this.imageUrl = dataURL;
+        Toast("长按图片保存海报");
       });
     },
     appSource() {
@@ -126,17 +128,17 @@ export default {
         align-items: flex-end;
         margin: 0;
         span:nth-child(2) {
-          font-size: 1.3125rem;
-          font-weight: bold;
-          color: rgba(240, 182, 84, 1);
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #ffd259;
           display: block;
-          margin: 0 0 -0.0625rem 0.5rem;
+          margin: 0 0.45rem -0.0625rem 0.5rem;
         }
       }
       .username {
-        font-size: 1.1875rem;
-        font-weight: bold;
-        color: rgba(240, 182, 84, 1);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffd259;
         display: block;
       }
     }
@@ -163,7 +165,7 @@ export default {
     }
     p {
       text-align: center;
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
       font-weight: 500;
       color: rgba(211, 62, 54, 1);
       line-height: 1.125rem;
@@ -171,7 +173,7 @@ export default {
     }
     p:nth-child(3) {
       background: #fff;
-      margin: -0.1875rem 0 0.375rem 0;
+      margin: 0 0 0.375rem 0;
       padding-bottom: 0.1875rem;
     }
   }

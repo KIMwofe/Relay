@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-01-09 10:39:39
  * @LastEditors  : hxz
- * @LastEditTime : 2020-02-07 03:45:02
+ * @LastEditTime : 2020-02-07 16:02:04
  */
 import Vue from "vue";
 import "./plugins/axios";
